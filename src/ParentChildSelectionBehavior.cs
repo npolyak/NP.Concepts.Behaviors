@@ -10,13 +10,16 @@
 // products that use it.
 using NP.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace NP.Concepts.Behaviors
 {
-    public class ParentChildSelectionBehavior<TParent, TChild>
+    public class ParentChildSelectionBehavior<TParent, TChild, TChildCollection>
         where TParent : class, ISelectableItem<TParent>
         where TChild : class, ISelectableItem<TChild>
+        where TChildCollection : INotifyCollectionChanged, IList<TChild>
     {
         IDisposable _childrenBehaviorDisposable = null;
 
@@ -46,8 +49,8 @@ namespace NP.Concepts.Behaviors
             }
         }
 
-        ObservableCollection<TChild> _children;
-        public ObservableCollection<TChild> Children
+        TChildCollection _children;
+        public TChildCollection Children
         {
             private get => _children;
             set

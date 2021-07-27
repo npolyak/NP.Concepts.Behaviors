@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace NP.Concepts.Behaviors
 {
-    public class SingleSelectionBehavior<TElement, TSelectable> : VMBase
+    public class SingleSelectionBehavior<TSelectable> : VMBase
         where TSelectable : class, ISelectableItem<TSelectable>
     {
         IDisposable _behaviorDisposable = null;
@@ -13,8 +13,8 @@ namespace NP.Concepts.Behaviors
 
 
         #region TheCollection Property
-        private IEnumerable<TElement> _collection;
-        public IEnumerable<TElement> TheCollection
+        private IEnumerable<TSelectable> _collection;
+        public IEnumerable<TSelectable> TheCollection
         {
             get => _collection;
             set
@@ -25,22 +25,9 @@ namespace NP.Concepts.Behaviors
                 _collection = value;
 
                 _behaviorDisposable =
-                    _collection?.AddBehavior
-                    (
-                        (item) => ((TSelectable)(object)item).IsSelectedChanged += Item_IsSelectedChanged,
-                        (item) => ((TSelectable)(object)item).IsSelectedChanged -= Item_IsSelectedChanged
-                    )
-                    .AddBehavior<TElement>
-                    (
-                        null, 
-                        (item) =>
-                        {
-                            if (item.ObjEquals(TheSelectedItem) && (TheSelectedItem != null))
-                            {
-                                TheSelectedItem = null;
-                            }
-                        }
-                    );
+                    _collection?.AddBehavior(OnItemAdded, OnItemRemoved);
+
+                OnCollectionSet();
             }
         }
         #endregion TheCollection Property
@@ -50,7 +37,44 @@ namespace NP.Concepts.Behaviors
 
         }
 
-        public SingleSelectionBehavior(IEnumerable<TElement> collection)
+        protected virtual void OnCollectionSet()
+        {
+
+        }
+
+        protected virtual void BeforeItemAdded(TSelectable item)
+        {
+
+        }
+
+        private void OnItemAdded(TSelectable item)
+        {
+            BeforeItemAdded(item);
+
+            if (item.IsSelected)
+            {
+                Item_IsSelectedChanged(item);
+            }
+
+            item.IsSelectedChanged += Item_IsSelectedChanged;
+        }
+
+        private void OnItemRemoved(TSelectable item)
+        {
+            item.IsSelectedChanged -= Item_IsSelectedChanged;
+
+            if (item.ObjEquals(TheSelectedItem) && TheSelectedItem != null)
+            {
+                DoOnSelectedItemRemoved();
+            }
+        }
+
+        protected virtual void DoOnSelectedItemRemoved()
+        {
+            TheSelectedItem = null;
+        }
+
+        public SingleSelectionBehavior(IEnumerable<TSelectable> collection)
         {
             TheCollection = collection;
         }
@@ -100,19 +124,5 @@ namespace NP.Concepts.Behaviors
             }
         }
         #endregion TheSelectedItem Property
-    }
-
-    public class SingleSelectionBehavior<TSelectable> : SingleSelectionBehavior<TSelectable, TSelectable>
-         where TSelectable : class, ISelectableItem<TSelectable>
-    {
-        public SingleSelectionBehavior()
-        {
-
-        }
-
-        public SingleSelectionBehavior(IEnumerable<TSelectable> collection)
-        {
-            TheCollection = collection;
-        }
     }
 }
