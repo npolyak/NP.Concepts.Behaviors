@@ -10,8 +10,8 @@ namespace NP.Concepts.Behaviors
         where TGetterObj : class
     {
         #region GetterObj Property
-        private TGetterObj? _getterObj;
-        public TGetterObj? GetterObj
+        private TGetterObj _getterObj;
+        public TGetterObj GetterObj
         {
             get
             {
@@ -95,7 +95,7 @@ namespace NP.Concepts.Behaviors
 
         Func<TGetterObj, TProp> _valGetter;
         Action<TItem, TProp> _itemSetter;
-        ISuspendableDisposable? _behavior;
+        ISuspendableDisposable _behavior;
 
         public SetItemsBehavior(Func<TGetterObj, TProp> valGetter, Action<TItem, TProp> itemSetter)
         {
