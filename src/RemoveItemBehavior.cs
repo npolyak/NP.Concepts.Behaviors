@@ -9,9 +9,9 @@ namespace NP.Concepts.Behaviors
     {
         IDisposable _behavior;
 
-        private IList<T> Items { get; set; }
+        private ICollection<T> Items { get; set; }
 
-        public RemoveItemBehavior(IList<T> items) : base(items)
+        public RemoveItemBehavior(ICollection<T> items) : base(items)
         {
             Items = items;
         }

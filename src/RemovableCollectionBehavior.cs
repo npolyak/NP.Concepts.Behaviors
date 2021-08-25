@@ -43,7 +43,7 @@ namespace NP.Concepts.Behaviors
 
         private void Item_RemoveEvent(IRemovable itemToRemove)
         {
-            (TheCollection as IList).Remove(itemToRemove);
+            (TheCollection as IList)?.Remove(itemToRemove);
         }
     }
 }
