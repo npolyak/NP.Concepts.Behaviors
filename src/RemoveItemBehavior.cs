@@ -9,7 +9,6 @@
 // Also, please, mention this software in any documentation for the 
 // products that use it.
 
-using NP.Concepts.Behaviors;
 using System;
 using System.Collections.Generic;
 
@@ -18,9 +17,7 @@ namespace NP.Concepts.Behaviors
     public class RemoveItemBehavior<T> : ForEachItemOverrideBehavior<T>
         where T : IRemovable
     {
-        IDisposable _behavior;
-
-        private ICollection<T> Items { get; set; }
+        protected ICollection<T> Items { get; set; }
 
         public RemoveItemBehavior(ICollection<T> items) : base(items)
         {
@@ -29,17 +26,22 @@ namespace NP.Concepts.Behaviors
 
         protected override void OnItemAdded(T item)
         {
-            item.RemoveEvent += Item_RemoveEvent;
+            item.RemoveEvent += OnRemoveEventFired;
         }
 
         protected override void OnItemRemoved(T item)
         {
-            item.RemoveEvent -= Item_RemoveEvent;
+            item.RemoveEvent -= OnRemoveEventFired;
         }
 
-        private void Item_RemoveEvent(IRemovable item)
+        private void OnRemoveEventFired(IRemovable item)
         {
-            this.Items?.Remove((T)item);
+            this.OnRemoveItem((T)item);
+        }
+
+        protected virtual void OnRemoveItem(T item)
+        {
+            this.Items?.Remove(item);
         }
     }
 }
