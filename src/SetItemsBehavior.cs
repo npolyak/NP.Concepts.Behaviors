@@ -9,108 +9,80 @@
 // Also, please, mention this software in any documentation for the 
 // products that use it.
 
-using NP.Concepts.Behaviors;
 using NP.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace NP.Concepts.Behaviors
 {
-    public class SetItemsBehavior<TGetterObj, TItem, TProp> : IDisposable
-        where TGetterObj : class
+    public class SetItemsBehavior<TItem, TProp> : IDisposable
     {
-        #region GetterObj Property
-        private TGetterObj _getterObj;
-        public TGetterObj GetterObj
+
+        private TProp _val = default;
+        public TProp Val
         {
-            get
-            {
-                return this._getterObj;
-            }
+            get => _val;
+
             set
             {
-                if (this._getterObj.ObjEquals(value))
+                if (_val.ObjEquals(value))
                 {
                     return;
                 }
 
-                if (_getterObj is INotifyPropertyChanged releaseNotifiable)
-                {
-                    releaseNotifiable.PropertyChanged -= Notifiable_PropertyChanged;
-                }
+                _behavior?.Dispose();
+                _val = value;
 
-                _behavior?.Suspend();
-                this._getterObj = value;
-
-                if (_getterObj is INotifyPropertyChanged subscribeNotifiable)
-                {
-                    subscribeNotifiable.PropertyChanged += Notifiable_PropertyChanged;
-                }
-
-                if (_getterObj != null)
-                {
-                    _behavior?.Reset();
-                }
+                _behavior = _items?.AddBehavior(OnAdded/*, OnRemoved*/);
             }
         }
 
-        private void Notifiable_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            _behavior?.Reset();
-        }
-        #endregion GetterObj Property
-
-
-        #region ChildItems Property
-        private IEnumerable<TItem>? _childItems;
-        public IEnumerable<TItem>? ChildItems
+        #region Items Property
+        private IEnumerable<TItem>? _items;
+        public IEnumerable<TItem>? Items
         {
             get
             {
-                return this._childItems;
+                return this._items;
             }
             set
             {
-                if (this._childItems.ObjEquals(value))
+                if (this._items.ObjEquals(value))
                 {
                     return;
                 }
 
                 _behavior?.Dispose();
 
-                this._childItems = value;
+                this._items = value;
 
-                _behavior = _childItems?.AddBehavior(OnAdded, OnRemoved);
+                _behavior = _items?.AddBehavior(OnAdded/*, OnRemoved*/);
             }
         }
+        #endregion Items Property
 
-        private void OnRemoved(TItem obj)
-        {
-            _itemSetter.Invoke(obj, default(TProp)!);
-        }
+        //private void OnRemoved(TItem obj)
+        //{
+        //    _itemSetter.Invoke(obj, default(TProp)!);
+        //}
 
-        private void OnAdded(TItem obj)
+        private void OnAdded(TItem item)
         {
-            _itemSetter.Invoke(obj, _valGetter.Invoke(GetterObj!));
+            _itemSetter.Invoke(item, _val);
         }
 
         public void Dispose()
         {
-            GetterObj = null;
             _behavior?.Dispose();
             _behavior = null;
         }
-        #endregion ChildItems Property
 
 
-        Func<TGetterObj, TProp> _valGetter;
         Action<TItem, TProp> _itemSetter;
-        ISuspendableDisposable _behavior;
+        IDisposable _behavior;
 
-        public SetItemsBehavior(Func<TGetterObj, TProp> valGetter, Action<TItem, TProp> itemSetter)
+        public SetItemsBehavior(Action<TItem, TProp> itemSetter)
         {
-            _valGetter = valGetter;
             _itemSetter = itemSetter;
         }
     }
