@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>NP.Concepts.Behaviors</id>
+    <version>1.0.1</version>
+    <title>NP.Concepts.Behaviors</title>
+    <authors>Nick Polyak, Ph. D.</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/npolyak/NP.Concepts.Behavior</projectUrl>
+    <description>Useful generic non-visual behaviors</description>
+    <summary>Useful generic non-visual behaviors</summary>
+    <releaseNotes>Useful generic non-visual behaviors</releaseNotes>
+    <copyright>Nick Polyak 2021</copyright>
+    <tags>non-visual behaviors</tags>
+    <dependencies>
+        <dependency id="NP.Utilities" version="1.0.5"/>
+    </dependencies>
+  </metadata>
+</package>
