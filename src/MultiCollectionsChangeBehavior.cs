@@ -37,26 +37,15 @@ namespace NP.Concepts.Behaviors
 
         protected IForEachItemCollectionBehavior<T> _individualCollectionItemBehavior;
 
-        public SynchronizationContext TheSyncContext { get; set; }
-
-        public void AttachCollectionImpl()
+        public virtual void AttachCollections()
         {
             (this as IForEachItemCollectionBehavior<IEnumerable<T>>).Attach(Collections);
         }
 
-        public virtual void AttachCollections()
-        {
-            TheSyncContext.RunWithinContext(AttachCollectionImpl);
-        }
-
-        public void DetachCollectionsImpl()
-        {
-            (this as IForEachItemCollectionBehavior<IEnumerable<T>>).Detach(Collections);
-        }
-
         public virtual void DetachCollections()
         {
-            TheSyncContext.RunWithinContext(DetachCollectionsImpl);
+
+            (this as IForEachItemCollectionBehavior<IEnumerable<T>>).Detach(Collections);
         }
 
         public MultiCollectionsChangeBehavior()
