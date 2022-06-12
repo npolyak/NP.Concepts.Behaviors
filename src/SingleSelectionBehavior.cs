@@ -10,6 +10,7 @@
 // products that use it.
 
 using NP.Utilities;
+using NP.Utilities.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -25,6 +26,7 @@ namespace NP.Concepts.Behaviors
 
         #region TheCollection Property
         private IEnumerable<TSelectable> _collection;
+        [DataPoint(DataPointDirection.Source)]
         public IEnumerable<TSelectable> TheCollection
         {
             get => _collection;
@@ -104,6 +106,7 @@ namespace NP.Concepts.Behaviors
 
         #region TheSelectedItem Property
         private TSelectable _selectedItem;
+        [DataPoint(DataPointDirection.Target)]
         [XmlIgnore]
         public TSelectable TheSelectedItem
         {
