@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>NP.Concepts.Behaviors</id>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <title>NP.Concepts.Behaviors</title>
     <authors>Nick Polyak, Ph. D.</authors>
     <license type="expression">MIT</license>
@@ -14,7 +14,7 @@
     <copyright>Nick Polyak 2021</copyright>
     <tags>non-visual behaviors</tags>
     <dependencies>
-        <dependency id="NP.Utilities" version="1.0.11"/>
+        <dependency id="NP.Utilities" version="1.0.12"/>
     </dependencies>
   </metadata>
 </package>
