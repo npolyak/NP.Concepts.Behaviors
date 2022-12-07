@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0;net7.0</TargetFramework>
+    <TargetFrameworks>net5.0;net6.0;net7.0</TargetFrameworks>
     <PackageId>NP.Concepts.Behaviors</PackageId>
     <Version>1.0.1</Version>
     <Authors>Nick Polyak, Ph. D.</Authors>
