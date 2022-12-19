@@ -4,3 +4,5 @@
 
 /src/obj
 /src/bin/Debug/net5.0
+/src/bin
+*.nupkg
