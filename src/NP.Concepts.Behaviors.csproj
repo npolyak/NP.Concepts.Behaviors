@@ -1,24 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <PackageId>NP.Concepts.Behaviors</PackageId>
-    <Version>1.0.1</Version>
-    <Authors>Nick Polyak, Ph. D.</Authors>
-    <Company>AWebPros</Company>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<PackageId>NP.Concepts.Behaviors</PackageId>
+		<Version>1.0.12</Version>
+		<Authors>Nick Polyak, Ph. D.</Authors>
+		<Company>AWebPros</Company>
+		<Description>Useful generic non-visual behaviors</Description>
+		<Copyright>Nick Polyak 2023</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>behaviors</PackageTags>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="NP.Concepts.Behaviors.*.nupkg" />
-    <None Remove="NP.Concepts.Behaviors.nuspec" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="NP.Concepts.Behaviors.*.nupkg" />
+		<None Remove="NP.Concepts.Behaviors.nuspec" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Reactive" Version="5.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Reactive" Version="5.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)..\..\SubModules\NP.Utilities\src\NP.Utilities.csproj"/>
-  </ItemGroup>
+	<ItemGroup Condition="'$(Configuration)'=='Debug'">
+		<ProjectReference Include="$(SolutionDir)..\..\SubModules\NP.Utilities\src\NP.Utilities.csproj"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Release'">
+		<PackageReference Include="NP.Utilities" Version="1.0.19"/>
+	</ItemGroup>
 </Project>
