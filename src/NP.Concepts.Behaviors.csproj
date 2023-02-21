@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<PackageId>NP.Concepts.Behaviors</PackageId>
-		<Version>1.0.12</Version>
+		<Version>1.0.13</Version>
 		<Authors>Nick Polyak, Ph. D.</Authors>
 		<Company>AWebPros</Company>
 		<Description>Useful generic non-visual behaviors</Description>
@@ -13,6 +13,15 @@
 		<PackageTags>behaviors</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <Optimize>False</Optimize>
+	  <DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DebugType>portable</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,10 +34,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug'">
-		<ProjectReference Include="$(SolutionDir)..\..\SubModules\NP.Utilities\src\NP.Utilities.csproj"/>
-	</ItemGroup>
-
+		<ProjectReference Include="$(SolutionDir)..\..\SubModules\NP.Utilities\src\NP.Utilities.csproj" />
+	</ItemGroup>	
+		
 	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<PackageReference Include="NP.Utilities" Version="1.0.19"/>
+		<PackageReference Include="NP.Utilities" Version="1.0.21" />
 	</ItemGroup>
 </Project>
