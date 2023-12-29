@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<PackageId>NP.Concepts.Behaviors</PackageId>
-		<Version>1.0.14</Version>
+		<Version>1.0.15</Version>
 		<Authors>Nick Polyak, Ph. D.</Authors>
 		<Company>AWebPros</Company>
 		<Description>Useful generic non-visual behaviors</Description>
@@ -30,14 +30,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="NP.Utilities" Version="1.0.22" />
 		<PackageReference Include="System.Reactive" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug'">
 		<ProjectReference Include="$(SolutionDir)..\..\SubModules\NP.Utilities\src\NP.Utilities.csproj" />
-	</ItemGroup>	
-		
-	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<PackageReference Include="NP.Utilities" Version="1.0.21" />
 	</ItemGroup>
 </Project>
