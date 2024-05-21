@@ -1,27 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
 		<PackageId>NP.Concepts.Behaviors</PackageId>
-		<Version>1.0.15</Version>
+		<Version>1.0.16</Version>
 		<Authors>Nick Polyak, Ph. D.</Authors>
 		<Company>AWebPros</Company>
 		<Description>Useful generic non-visual behaviors</Description>
 		<Copyright>Nick Polyak 2023</Copyright>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>behaviors</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <Optimize>False</Optimize>
-	  <DebugType>embedded</DebugType>
+		<Optimize>True</Optimize>
+		<DebugType>embedded</DebugType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DebugType>portable</DebugType>
+		<DebugType>portable</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NP.Utilities" Version="1.0.22" />
+		<PackageReference Include="NP.Utilities" Version="1.0.23" />
 		<PackageReference Include="System.Reactive" Version="6.0.0" />
 	</ItemGroup>
 
