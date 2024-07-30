@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>NP.Concepts.Behaviors</PackageId>
-		<Version>1.0.20</Version>
+		<Version>1.0.21</Version>
 		<Authors>Nick Polyak, Ph. D.</Authors>
 		<Company>AWebPros</Company>
 		<Description>Useful generic non-visual behaviors</Description>
@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Condition="'$(Configuration)'=='Release'" Include="NP.Utilities" Version="1.0.26" />
+		<PackageReference Condition="'$(Configuration)'=='Release'" Include="NP.Utilities" Version="1.0.27" />
 		<PackageReference Include="System.Reactive" Version="6.0.1" />
 	</ItemGroup>
 
