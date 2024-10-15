@@ -400,3 +400,4 @@ FodyWeavers.xsd
 
 #merge files
 *.orig
+*.DS_Store
