@@ -1,5 +1,4 @@
-﻿using NP.Utilities;
-using NP.Utilities.Attributes;
+﻿using NP.Utilities.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +16,7 @@ namespace NP.Concepts.Behaviors
 
         private IDisposable _transformBehavior;
 
-        [DataPoint(DataPointDirection.Source)]
+        [BrickDataPoint(Direction=BrickDataPointDirection.Source)]
         public IEnumerable<TInput> InputCollection
         {
             get => _inputCollection;
@@ -50,7 +49,7 @@ namespace NP.Concepts.Behaviors
             OutputCollection.Remove(outputItemToRemove);
         }
 
-        [DataPoint(DataPointDirection.Target)]
+        [BrickDataPoint(Direction=BrickDataPointDirection.Target)]
         public ObservableCollection<TOutput> OutputCollection { get; } = 
             new ObservableCollection<TOutput>();
         

@@ -26,7 +26,7 @@ namespace NP.Concepts.Behaviors
 
         #region TheCollection Property
         private IEnumerable<TSelectable> _collection;
-        [DataPoint(DataPointDirection.Source)]
+        [BrickDataPoint(Direction=BrickDataPointDirection.Source)]
         public IEnumerable<TSelectable> TheCollection
         {
             get => _collection;
@@ -106,7 +106,7 @@ namespace NP.Concepts.Behaviors
 
         #region TheSelectedItem Property
         private TSelectable _selectedItem;
-        [DataPoint(DataPointDirection.Target)]
+        [BrickDataPoint(Direction=BrickDataPointDirection.Target)]
         [XmlIgnore]
         public TSelectable TheSelectedItem
         {
