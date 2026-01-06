@@ -16,7 +16,7 @@ namespace NP.Concepts.Behaviors
 
         private IDisposable _transformBehavior;
 
-        [BrickDataPoint(Direction=BrickDataPointDirection.Source)]
+        [TileDataPoint(Direction=TileDataPointDirection.Source)]
         public IEnumerable<TInput> InputCollection
         {
             get => _inputCollection;
@@ -49,7 +49,7 @@ namespace NP.Concepts.Behaviors
             OutputCollection.Remove(outputItemToRemove);
         }
 
-        [BrickDataPoint(Direction=BrickDataPointDirection.Target)]
+        [TileDataPoint(Direction=TileDataPointDirection.Target)]
         public ObservableCollection<TOutput> OutputCollection { get; } = 
             new ObservableCollection<TOutput>();
         

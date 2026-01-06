@@ -24,7 +24,7 @@ namespace NP.Concepts.Behaviors
         IDisposable _filteringBehavior;
 
         private IEnumerable<T> _inputCollection;
-        [BrickDataPoint(Direction=BrickDataPointDirection.Source)]
+        [TileDataPoint(Direction=TileDataPointDirection.Source)]
         public IEnumerable<T> InputCollection
         {
             get => _inputCollection;
@@ -49,7 +49,7 @@ namespace NP.Concepts.Behaviors
             _filteringBehavior = _inputCollection.AddBehavior(OnItemAdded, OnItemRemoved);
         }
 
-        [BrickDataPoint(Direction=BrickDataPointDirection.Target)]
+        [TileDataPoint(Direction=TileDataPointDirection.Target)]
         public ObservableCollection<T> OutputCollection { get; } = new ObservableCollection<T>();
 
         private void OnItemAdded(T item)
